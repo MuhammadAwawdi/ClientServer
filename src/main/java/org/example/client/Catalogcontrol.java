@@ -28,7 +28,7 @@ import org.example.entities.Message;
 import org.example.server.Server;
 import org.example.client.Client;
 
-import javax.annotation.Resource;
+
 import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
