@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="616.0" prefWidth="662.0" style="-fx-background-color: lavender;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.client.CancelOrderController">
+   <children>
+      <Button fx:id="homebutton" layoutY="-1.0" mnemonicParsing="false" onAction="#goHome" prefHeight="31.0" prefWidth="66.0" style="-fx-background-color: white;" text="Home" />
+      <TableView fx:id="ProductTable" layoutY="74.0" prefHeight="296.0" prefWidth="452.0" style="-fx-background-color: white;">
+         <columns>
+            <TableColumn fx:id="orderId" prefWidth="113.0" text="Order Id" />
+            <TableColumn fx:id="OrderPrice" prefWidth="113.0" text="Price" />
+            <TableColumn fx:id="orderDate" prefWidth="113.0" text="Date" />
+         </columns>
+      </TableView>
+      <Button fx:id="cancelBottun" layoutY="404.0" mnemonicParsing="false" onAction="#CancelOrder" prefHeight="26.0" prefWidth="111.0" style="-fx-background-color: white;" text="Cancel Order" />
+   </children>
+</AnchorPane>
