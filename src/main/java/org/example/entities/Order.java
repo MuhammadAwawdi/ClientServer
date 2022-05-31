@@ -1,5 +1,7 @@
 package org.example.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -25,13 +27,15 @@ public class Order implements Serializable
     @ManyToMany
     List<PersonalDesign> PersonalDesignList;
     Boolean Card;
+    @OneToMany
+    User user;
 
     //constructors
     public Order(){
 
     }
 
-    public Order(LocalDate orderDate, LocalTime orderTime, Boolean shipping, LocalTime orderArriveTime, List<Item> productList, List<PersonalDesign> personalDesignList, Boolean card) {
+    public Order(LocalDate orderDate, LocalTime orderTime, Boolean shipping, LocalTime orderArriveTime, List<Item> productList, List<PersonalDesign> personalDesignList, Boolean card, User user) {
         OrderDate = orderDate;
         OrderTime = orderTime;
         this.shipping = shipping;
@@ -39,11 +43,10 @@ public class Order implements Serializable
         ProductList = productList;
         PersonalDesignList = personalDesignList;
         Card = card;
+        this.user = user;
     }
 
-
-
-    //getters and setters
+//getters and setters
 
 
     public int getOrderID() {
