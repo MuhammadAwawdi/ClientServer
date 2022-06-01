@@ -6,8 +6,10 @@ import java.util.logging.Logger;
 
 import javafx.application.Platform;
 import org.example.App;
+import org.example.entities.*;
 import org.example.entities.Item;
 import org.example.entities.Message;
+//import org.example.entities.Order;
 import org.example.ocsf.client.AbstractClient;
 
 public class Client extends AbstractClient {
@@ -16,6 +18,8 @@ public class Client extends AbstractClient {
 
     private static Client client = null;
     public static  Object data;
+
+    public static  List<Order> orderList =null;
 
 
 
@@ -80,5 +84,6 @@ public class Client extends AbstractClient {
         }
         return client;
     }
+
 
 }
