@@ -17,6 +17,12 @@ public class Message implements Serializable {
 
     private Object object;
 
+    private  String content;
+
+    public Message() {
+    }
+
+
     public Message(int msg) {
         this.msg = msg;
         this.object=null;
@@ -40,6 +46,17 @@ public class Message implements Serializable {
 
     public Object getObject() {
         return object;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setObject(Complaint c) {
     }
 
 }

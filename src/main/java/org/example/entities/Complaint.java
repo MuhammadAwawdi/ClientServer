@@ -20,8 +20,10 @@ public class Complaint implements Serializable {
     private String storeName;
     private Boolean response;
     private Boolean done;
+    private String status;
     private LocalDate date;
     private LocalTime sendTime;
+    private String email;
 
     public Complaint() {
     }
@@ -90,5 +92,21 @@ public class Complaint implements Serializable {
 
     public void setSendTime(LocalTime sendTime) {
         this.sendTime = sendTime;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
