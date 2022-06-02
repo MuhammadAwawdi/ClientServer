@@ -21,7 +21,7 @@ public class Order implements Serializable
     LocalDate OrderDate;
     LocalTime OrderTime;
     Boolean shipping;
-    LocalTime OrderArriveTime;
+    LocalTime OrderArriveTime; // client chooses which time she needs it
     @ManyToMany
     List<Item> ProductList;
     @ManyToMany
@@ -29,6 +29,7 @@ public class Order implements Serializable
     Boolean Card;
     @OneToMany
     User user;
+    int totalCost;
 
     //constructors
     public Order(){
@@ -113,5 +114,13 @@ public class Order implements Serializable
 
     public void setPersonalDesignList(List<PersonalDesign> personalDesignList) {
         PersonalDesignList = personalDesignList;
+    }
+
+    public int getTotalCost() {
+        return totalCost;
+    }
+
+    public void setTotalCost(int totalCost) {
+        this.totalCost = totalCost;
     }
 }

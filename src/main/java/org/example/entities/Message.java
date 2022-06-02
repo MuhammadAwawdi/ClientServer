@@ -13,7 +13,7 @@ public class Message implements Serializable {
     public static final int updateItemComplete= 4;
 
     //////////////
-    private final int msg;
+    private int msg;
 
     private Object object;
 
@@ -25,6 +25,12 @@ public class Message implements Serializable {
     public Message(int msg, Object object) {
         this.msg = msg;
         this.object = object;
+    }
+
+    public Message(String s, String buyerEmail) {
+    }
+
+    public Message(String s) {
     }
 
     public int getMsg() {
