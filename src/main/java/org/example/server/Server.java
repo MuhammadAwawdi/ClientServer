@@ -16,6 +16,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.SocketHandler;
 
 public class Server  extends AbstractServer {
     SessionFactory sessionFactory = getSessionFactory();
@@ -30,11 +31,9 @@ public class Server  extends AbstractServer {
 
     public static void updateItem(Item item) {
         try {
-            System.out.println(item.getPrice());
             item.setPrice(item.getPrice());
             session.update(item);
             session.flush();
-            System.out.println("FLush");
         }
         catch (Exception e)
         {
@@ -115,16 +114,66 @@ public class Server  extends AbstractServer {
                 session = sessionFactory.openSession();
                 session.beginTransaction();
                 Item item = (Item)message.getObject();
-                System.out.println(item.getName());
                 updateItem(item);
                 session.getTransaction().commit();
                 items = getAllItems();
                 Message response1 = new Message(Message.recieveAllItems, items);
                 client.sendToClient(response1);
-                session.close();
+//                session.close();
+                break;
+            case Message.deleteProduct:
+                Message delResponse = new Message(Message.deleteProductResponse);
+                try{
+                    session = sessionFactory.openSession();
+                    session.beginTransaction();
+                    Item m = (Item) message.getObject();
+                    session.delete(m);
+                    session.flush();
+                    session.getTransaction().commit(); // Save everything
+                    client.sendToClient(delResponse);
+//                    session.close();
+                } catch (Exception ex) {
+                    if (session != null) {
+                        session.getTransaction().rollback();
+                    }
+                    System.err.println("An error occurred, changes have been rolled back.");
+
+                    ex.printStackTrace();
+
+                }
+                break;
+            case Message.addProduct:
+                Message addResponse = new Message(Message.addProductResponse);
+                try {
+                    session = sessionFactory.openSession();
+                    session.beginTransaction();
+                    Item m = (Item) message.getObject();
+                    session.save(m);
+                    session.flush();
+                    session.getTransaction().commit();
+                    client.sendToClient(addResponse);
+                } catch (Exception ex) {
+                    if (session != null) {
+                        session.getTransaction().rollback();
+                    }
+                    System.err.println("An error occurred, changes have been rolled back.");
+
+                    ex.printStackTrace();
+
+                }
+//                session.close();//When triggered back it will cause problem in saving the item properly in the table
                 break;
 
 
+        }
+    }
+    private void sendRefreshcatlogevent() {
+        System.out.println("test test new function");
+        try {
+            Message msg = new Message(Message.getAllItems);
+            this.sendToAllClients(msg);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

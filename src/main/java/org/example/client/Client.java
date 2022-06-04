@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
+import java.util.logging.SocketHandler;
 
 import javafx.application.Platform;
 import org.example.App;
@@ -49,6 +50,14 @@ public class Client extends AbstractClient {
                             // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
+                    break;
+                case Message.deleteProductResponse:
+                    System.out.println("Product has been deleted");
+                    RefreshCatalog();
+                break;
+                case Message.addProductResponse:
+                    System.out.println("Product has been added");
+                    RefreshCatalog();
             }
         }
         else{
@@ -79,6 +88,15 @@ public class Client extends AbstractClient {
             client = new Client("localhost", 3000);
         }
         return client;
+    }
+    private void RefreshCatalog(){
+        Message new_msg=new Message(Message.getAllItems);
+        try {
+            Client.getClient().sendToServer(new_msg);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("message sent to server to refresh the catalog page");
     }
 
 }

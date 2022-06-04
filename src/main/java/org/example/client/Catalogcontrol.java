@@ -40,13 +40,26 @@ import java.util.ResourceBundle;
 import java.util.Stack;
 
 public class Catalogcontrol implements Initializable {
-
+    double percentage=1;
     ObservableList<Item> data = FXCollections.observableArrayList();
     @FXML //fx:id="CataButton"
     private Button CataButton;
 
     @FXML //fx:id="editButton"
     private Button editButton;
+
+    @FXML // fx:id="addButton"
+    private Button addButton; // Value injected by FXMLLoader
+
+    @FXML // fx:id="deleteButton"
+    private Button deleteButton; // Value injected by FXMLLoader
+
+    @FXML // fx:id="discountButton"
+    private Button discountButton; // Value injected by FXMLLoader
+
+    @FXML // fx:id="cancelDiscountButton"
+    private Button cancelDiscountButton; // Value injected by FXMLLoader
+
 
     @FXML // fx:id="homebutton"
     private Button homebutton; // Value injected by FXMLLoader
@@ -66,8 +79,73 @@ public class Catalogcontrol implements Initializable {
     @FXML // fx:id="productKind"
     private TableColumn<Item, String> productKind; // Value injected by FXMLLoader
     public static Item selectedItem=new Item();
-    
+    public static Item itemByPercentage=new Item();
 
+    @FXML
+    void addDiscount(ActionEvent event) {
+        Button applyDiscount = new Button("Apply");
+
+        Label discountLabel = new Label("Discount Percentage");
+        TextField discountTF = new TextField("0");
+        discountTF.setMaxWidth(75);
+        StackPane discountLayOut = new StackPane();
+        StackPane.setAlignment(discountLabel, Pos.CENTER_LEFT);
+        StackPane.setAlignment(discountTF, Pos.CENTER_RIGHT);
+        StackPane.setAlignment(applyDiscount, Pos.BOTTOM_CENTER);
+        discountLayOut.getChildren().addAll(discountLabel, discountTF,applyDiscount);
+
+
+        Scene discountScene = new Scene(discountLayOut, 230, 100);
+        Stage discountWindow = new Stage();
+        discountWindow.setTitle("Add Discount");
+        discountWindow.setScene(discountScene);
+        discountWindow.show();
+
+        applyDiscount.setOnAction(e -> {
+            double percentage = (Double.parseDouble(discountTF.getText()));
+            for(int i=0; i<ProductTable.getItems().size();i++){
+               ProductTable.getItems().get(i).setPrice(percentage*ProductTable.getItems().get(i).getPrice()/100);
+                System.out.println(ProductTable.getItems().get(i).getPrice());
+                itemByPercentage = ProductTable.getItems().get(i);
+                Message percentageMessage = new Message(Message.updateItem,itemByPercentage);
+                Client.getClient().sendMessageToServer(percentageMessage);
+            }
+            handleRefresh(new ActionEvent());
+            discountWindow.close();
+        });
+    }
+    @FXML
+    void addProduct(ActionEvent event){
+        Parent parent = null;
+        FXMLLoader loader = new FXMLLoader(App.class.getResource("addProduct.fxml"));
+        try {
+            parent = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Stage stage = new Stage();
+        stage.setTitle("Add Product");
+        stage.setScene(new Scene(parent));
+        stage.show();
+//        stage.setOnHiding((e) -> {
+//            handleRefresh(new ActionEvent());
+//        });
+    }
+
+    @FXML
+    void deleteProudct(ActionEvent event) {
+        int index = ProductTable.getSelectionModel().getSelectedIndex();
+        if (index <= -1) {
+            return;
+        }
+        selectedItem = ProductTable.getSelectionModel().getSelectedItem();
+        Message msg = new Message(Message.deleteProduct, selectedItem);
+        try {
+            Client.getClient().sendToServer(msg);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     private  void initCol() {
         try {
@@ -153,8 +231,10 @@ public class Catalogcontrol implements Initializable {
         Label firstLabel=new Label("Product Name");
         Label secondLabel=new Label("Product Price");
         Label thirdLabel=new Label("Product Kind");
-        Label fourthLabel=new Label(selectedItem.getName());
-        Label fifthLabel=new Label(selectedItem.getKind());
+        TextField fourthLabel=new TextField(selectedItem.getName());
+        fourthLabel.setMaxWidth(75);
+        TextField fifthLabel=new TextField(selectedItem.getKind());
+        fifthLabel.setMaxWidth(75);
         TextField tf=new TextField(String.valueOf(selectedItem.getPrice()));
         tf.setMaxWidth(75);
         StackPane secondaryLayOut1 = new StackPane();
@@ -176,10 +256,22 @@ public class Catalogcontrol implements Initializable {
         newWindow1.show();
 
         saveBtn.setOnAction(e -> {
+            selectedItem.setName((fourthLabel.getText()));
+            selectedItem.setKind((fifthLabel.getText()));
             selectedItem.setPrice(Double.parseDouble(tf.getText()));
             Message message1 = new Message(Message.updateItem, selectedItem);
             Client.getClient().sendMessageToServer(message1);
             newWindow1.close();
         });
     }
+        private void handleRefresh(ActionEvent event) {
+            try {
+                Message msg=new Message(Message.getAllItems);
+                Client.getClient().sendToServer(msg);
+                System.out.println("message sent to server to get all products");
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
 }
