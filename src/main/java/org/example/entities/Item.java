@@ -12,12 +12,26 @@ public class Item implements Serializable {
     private String name;
     private double price;
     private String kind;
+    private String ImgURL;
 
     public Item(){}
-    public Item(String name,double price, String kind){
+/*    public Item(String name,double price, String kind){
         this.name=name;
         this.price=price;
         this.kind=kind;
+    }*/
+    public Item(String name,double price, String kind,String ImageURL){
+        this.name=name;
+        this.price=price;
+        this.kind=kind;
+        this.ImgURL=ImageURL;
+    }
+    public String getImgURL() {
+        return ImgURL;
+    }
+
+    public void setImgURL(String imgURL) {
+        ImgURL = imgURL;
     }
 
     public int getId(){

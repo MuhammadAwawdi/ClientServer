@@ -44,21 +44,49 @@ public class Server  extends AbstractServer {
     }
 
     static void intitializeDataBase(){
-        Item tree = new Item("greeny",111,"Tree");
-        session.save(tree);
+        Item item1 = new Item("Festive Gladioli bouquet",349,"Bouquet","https://florabloom.co.il/wp-content/uploads/2020/07/MG_1293-2-Edit_websize-1.jpg");
+        session.save(item1);
         session.flush();
-        Item flower= new Item("Flowery",222,"Flower");
-        session.save(flower);
+        Item item2= new Item("Miss Lizzie Bouquet",318,"Bouquet","https://florabloom.co.il/wp-content/uploads/2021/11/MG_1123-2-Edit_websize-1.jpg");
+        session.save(item2);
         session.flush();
-        Item redFlower= new Item("redFlowery",333,"Flower");
-        session.save(redFlower);
+        Item item3= new Item("Red Sun Bouquet",268,"Bouquet","https://florabloom.co.il/wp-content/uploads/2020/08/MG_1205-2-Edit_websize.jpg");
+        session.save(item3);
         session.flush();
-        Item bigTree=new Item("Biggy",444,"Tree");
-        session.save(bigTree);
+        Item item4=new Item("Pure White Bouquet",295,"Bouquet","https://florabloom.co.il/wp-content/uploads/2021/08/MG_1238-2-Edit_websize-1.jpg");
+        session.save(item4);
         session.flush();
-        Item smallTree=new Item("Smally",555,"Tree");
-        session.save(smallTree);
+        Item item5=new Item("Lady Lillia Bouquet",315,"Bouquet","https://florabloom.co.il/wp-content/uploads/2021/11/MG_1167-2-Edit_websize-1.jpg");
+        session.save(item5);
         session.flush();
+        Item item6=new Item("Red Roses",213,"Bouquet","https://florabloom.co.il/wp-content/uploads/2020/07/MG_4288-Edit_websize-1-1.jpg");
+        session.save(item6);
+        session.flush();
+        Item item7=new Item("Autumn Bouquet",347,"Bouquet","https://florabloom.co.il/wp-content/uploads/2021/11/MG_1114-2-Edit_websize-3.jpg");
+        session.save(item7);
+        session.flush();
+        Item item8=new Item("Romantic Chrysanthemum Bouquet",299,"Bouquet","https://florabloom.co.il/wp-content/uploads/2021/11/MG_4327-1_websize.jpg");
+        session.save(item8);
+        session.flush();
+        Item item9=new Item("Sunflowers Bouquet",255,"Bouquet","https://florabloom.co.il/wp-content/uploads/2021/11/MG_4308-1_websize.jpg");
+        session.save(item9);
+        session.flush();
+        Item item10=new Item("Lizi Boxt",279,"Bouquet","https://florabloom.co.il/wp-content/uploads/2020/08/MG_1095-2-Edit_websize-1.jpg");
+        session.save(item10);
+        session.flush();
+        Item item11=new Item("Calthea",63,"tree","https://florabloom.co.il/wp-content/uploads/2020/11/MG_1248-2-Edit_websize.jpg");
+        session.save(item11);
+        session.flush();
+        Item item12=new Item("Fiddle-leaf fig",60,"tree","https://florabloom.co.il/wp-content/uploads/2020/11/WhatsApp-Image-2020-11-05-at-10.59.56-1.jpeg");
+        session.save(item12);
+        session.flush();
+        Item item13=new Item("Red Antorium",79,"tree","https://florabloom.co.il/wp-content/uploads/2020/07/WhatsApp-Image-2020-11-05-at-10.24.25.jpeg");
+        session.save(item13);
+        session.flush();
+        Item item14=new Item("Caltheaa",65,"tree","https://florabloom.co.il/wp-content/uploads/2021/08/B8A1FC70-DF9C-4734-AA2A-A3594AB96C98.jpg");
+        session.save(item14);
+        session.flush();
+
     }
     public static Session getSession() {
         return session;

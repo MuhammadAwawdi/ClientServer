@@ -4,9 +4,14 @@
 
 package org.example.client;
 
+import com.sun.javafx.iio.common.ImageTools;
 import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,7 +33,7 @@ import org.example.entities.Message;
 import org.example.server.Server;
 import org.example.client.Client;
 
-import javax.annotation.Resource;
+//import javax.annotation.Resource;
 import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
@@ -39,11 +44,35 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Stack;
 
+import java.net.URL;
+import java.util.*;
+import javax.imageio.ImageIO;
+import javax.security.auth.callback.Callback;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.net.URL;
+import java.util.*;
+import javax.imageio.ImageIO;
+import javax.security.auth.callback.Callback;
+
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.beans.value.ObservableValue;
+import javafx.scene.image.*;
+import javafx.scene.image.ImageView;
+
+
 public class Catalogcontrol implements Initializable {
     double percentage=1;
     ObservableList<Item> data = FXCollections.observableArrayList();
     @FXML //fx:id="CataButton"
     private Button CataButton;
+
+    @FXML
+    private Button Add2Pascket;
 
     @FXML //fx:id="editButton"
     private Button editButton;
@@ -61,23 +90,27 @@ public class Catalogcontrol implements Initializable {
     private Button cancelDiscountButton; // Value injected by FXMLLoader
 
 
-    @FXML // fx:id="homebutton"
-    private Button homebutton; // Value injected by FXMLLoader
+    @FXML
+    private Button homebutton;
 
-    @FXML // fx:id="ProductTable"
-    private TableView<Item> ProductTable; // Value injected by FXMLLoader
+    @FXML
+    private TableView<Item> ProductTable;
 
-    @FXML // fx:id="productName"
-    private TableColumn<Item, String> productName; // Value injected by FXMLLoader
+    @FXML
+    private TableColumn<Item, String> imageCol;
 
-    @FXML // fx:id="productPrice"
-    private TableColumn<Item, Double> productPrice; // Value injected by FXMLLoader
+    @FXML
+    private TableColumn<Item, String> productName;
 
-    @FXML // fx:id="showProductDetails"
-    private Button showProductDetails; // Value injected by FXMLLoader
+    @FXML
+    private TableColumn<Item, String> productKind;
 
-    @FXML // fx:id="productKind"
-    private TableColumn<Item, String> productKind; // Value injected by FXMLLoader
+    @FXML
+    private TableColumn<Item, Double> productPrice;
+
+    @FXML
+    private Button showProductDetails;
+
     public static Item selectedItem=new Item();
     public static Item itemByPercentage=new Item();
 
@@ -149,8 +182,12 @@ public class Catalogcontrol implements Initializable {
 
     private  void initCol() {
         try {
+            imageCol.setCellValueFactory(new PropertyValueFactory<>("ImgURL"));
+            imageCol.setCellFactory(param -> new ImageTableCell<>());
+            imageCol.prefWidthProperty().bind(ProductTable.widthProperty().multiply(.30));;
+
             productName.setCellValueFactory(new PropertyValueFactory<>("name"));
-            productName.prefWidthProperty().bind(ProductTable.widthProperty().multiply(.20));
+            productName.prefWidthProperty().bind(ProductTable.widthProperty().multiply(.30));
 
             productPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
             productPrice.prefWidthProperty().bind(ProductTable.widthProperty().multiply(.20));
@@ -274,4 +311,8 @@ public class Catalogcontrol implements Initializable {
                 e.printStackTrace();
             }
         }
+    @FXML
+    void AddToPascket(ActionEvent event) {
+
+    }
 }
