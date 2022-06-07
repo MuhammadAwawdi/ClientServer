@@ -13,32 +13,6 @@ public class Client extends User implements Serializable {
     private long CardNum;
     private int cvv;
     private String AccountType;
-    @OneToMany
-    private List<Item> itemsList;
-
-    public List<Item> getItemsList() {
-        return itemsList;
-    }
-
-    public void setItemsList(List<Item> itemsList) {
-        this.itemsList = itemsList;
-    }
-
-
-    public void addItems(Item item)
-    {
-        this.itemsList.add(item);
-    }
-    @OneToMany
-    private List<Order> ordersList;
-
-    public List<Order> getOrdersList() {
-        return ordersList;
-    }
-
-    public void setOrdersList(List<Order> ordersList) {
-        this.ordersList = ordersList;
-    }
 
     public Client(String id, String username, String password) {
         super(username, password);

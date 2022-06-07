@@ -1,7 +1,9 @@
 package org.example.server;
 
+import org.example.entities.Client;
 import org.example.entities.Item;
 import org.example.entities.Message;
+import org.example.entities.User;
 import org.example.ocsf.server.AbstractServer;
 import org.example.ocsf.server.ConnectionToClient;
 import org.hibernate.HibernateException;
@@ -97,7 +99,9 @@ public class Server  extends AbstractServer {
         Configuration configuration = new Configuration();
         // Add ALL of your entities here. You can also try adding a whole package.
         configuration.addAnnotatedClass(Item.class);
-
+        configuration.addAnnotatedClass(User.class);
+        configuration.addAnnotatedClass(Client.class);
+        configuration.addAnnotatedClass(Message.class);
         ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                 .applySettings(configuration.getProperties())
                 .build();
