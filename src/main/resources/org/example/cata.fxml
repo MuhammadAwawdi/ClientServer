@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 
 <HBox alignment="CENTER" prefHeight="730.0" prefWidth="882.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.client.catacontrol">
-   <AnchorPane prefHeight="731.0" prefWidth="882.0" style="-fx-background-color: lavender;">
+   <AnchorPane prefHeight="731.0" prefWidth="882.0" style="-fx-background-color: DarkSeaGreen;">
       <Button fx:id="ShowButton" layoutX="309.0" layoutY="77.0" mnemonicParsing="false" onAction="#ShowCatalogue" prefHeight="35.0" prefWidth="150.0" style="-fx-background-color: white;" text="Go To Catalogue" underline="true">
          <font>
             <Font name="Century Gothic Bold" size="14.0" />
