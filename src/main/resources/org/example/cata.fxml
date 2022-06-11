@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -7,41 +8,55 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox alignment="CENTER" prefHeight="730.0" prefWidth="882.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.client.catacontrol">
-   <AnchorPane prefHeight="731.0" prefWidth="882.0" style="-fx-background-color: DarkSeaGreen;">
-      <Button fx:id="ShowButton" layoutX="309.0" layoutY="77.0" mnemonicParsing="false" onAction="#ShowCatalogue" prefHeight="35.0" prefWidth="150.0" style="-fx-background-color: white;" text="Go To Catalogue" underline="true">
+<HBox alignment="CENTER" prefHeight="604.0" prefWidth="615.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.client.catacontrol">
+   <AnchorPane prefHeight="604.0" prefWidth="613.0" styleClass="bodybg" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+      <stylesheets>
+         <URL value="@style.css" />
+      </stylesheets>
+      <Button fx:id="ShowButton" layoutX="224.0" layoutY="170.0" mnemonicParsing="false" onAction="#ShowCatalogue" prefHeight="35.0" prefWidth="150.0" style="-fx-background-color: white;" text="Go to Catalogue" textFill="#82146e">
          <font>
-            <Font name="Century Gothic Bold" size="14.0" />
+            <Font name="Arial" size="16.0" />
          </font></Button>
-      <Label fx:id="welcomeText" layoutX="328.0" layoutY="14.0" style="-fx-alignment: yellow;" text="WELCOME!" textAlignment="CENTER">
+      <Label fx:id="welcomeText" graphicTextGap="8.0" layoutX="156.0" layoutY="72.0" style="-fx-alignment: yellow;" text="LILACH FLOWERS" textAlignment="CENTER" textFill="#9a226a">
          <font>
-            <Font name="Bookman Old Style Bold" size="19.0" />
+            <Font name="Arial" size="37.0" />
          </font>
       </Label>
-      <Label layoutX="284.0" layoutY="37.0" prefHeight="40.0" prefWidth="230.0" text="Adding colors to your life." textAlignment="CENTER">
+      <Label layoutX="333.0" layoutY="115.0" prefHeight="35.0" prefWidth="291.0" text="Adding colors to your life!" textAlignment="CENTER" textFill="#e481be">
          <font>
-            <Font name="System Bold Italic" size="18.0" />
+            <Font name="Arial" size="19.0" />
          </font>
       </Label>
-      <Label layoutX="263.0" layoutY="117.0" prefHeight="43.0" prefWidth="349.0" text="Login to Your Account">
+      <Label layoutX="211.0" layoutY="233.0" prefHeight="43.0" prefWidth="177.0" text="Login to Your Account" textFill="#9d3c88">
          <font>
-            <Font name="Century Gothic Bold" size="16.0" />
+            <Font name="Arial Bold" size="15.0" />
          </font>
       </Label>
-      <Button fx:id="signInButton" layoutX="271.0" layoutY="277.0" mnemonicParsing="false" onAction="#signIn" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: white;" text="Sign In" />
-      <TextField fx:id="usernameTF" layoutX="271.0" layoutY="187.0" prefHeight="31.0" prefWidth="279.0" text="Name:" />
-      <TextField fx:id="passwordTF" layoutX="271.0" layoutY="234.0" prefHeight="31.0" prefWidth="279.0" text="Password:" />
-      <Button fx:id="signIpButton" layoutX="384.0" layoutY="277.0" mnemonicParsing="false" onAction="#signUp" prefHeight="31.0" prefWidth="101.0" style="-fx-background-color: white;" text="Sign Up" />
-      <Label layoutX="601.0" layoutY="172.0">
+      <Button fx:id="signInButton" layoutX="254.0" layoutY="343.0" mnemonicParsing="false" onAction="#signIn" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: white;" text="Sign In" textFill="#c71692">
          <font>
-            <Font name="Arial Bold Italic" size="20.0" />
+            <Font name="Arial" size="12.0" />
+         </font></Button>
+      <TextField fx:id="usernameTF" layoutX="198.0" layoutY="272.0" prefHeight="23.0" prefWidth="217.0" />
+      <TextField fx:id="passwordTF" layoutX="198.0" layoutY="308.0" prefHeight="25.0" prefWidth="217.0" />
+      <Button fx:id="signIpButton" layoutX="255.0" layoutY="440.0" mnemonicParsing="false" onAction="#signUp" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: white;" text="Sign Up" textFill="#c52397" />
+      <Label layoutX="121.0" layoutY="277.0" text="UserName" textFill="#a83a9f">
+         <font>
+            <Font name="Arial" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="623.0" layoutY="203.0">
+      <Label layoutX="128.0" layoutY="308.0" prefHeight="25.0" prefWidth="69.0" text="Password" textFill="#b52e9f">
          <font>
-            <Font name="Arial Bold Italic" size="20.0" />
+            <Font name="Arial" size="15.0" />
          </font>
       </Label>
-      <Label fx:id="instructions" layoutX="271.0" layoutY="333.0" prefHeight="21.0" prefWidth="358.0" text="Label" />
+      <Label fx:id="instructions" layoutX="184.0" layoutY="411.0" prefHeight="21.0" prefWidth="262.0" text="Don't have an account? Press &quot;Sign Up&quot; " textFill="#b72f9c">
+         <font>
+            <Font name="Arial" size="14.0" />
+         </font></Label>
+      <Label fx:id="welcomeText1" layoutX="245.0" layoutY="44.0" style="-fx-alignment: yellow;" text="WELCOME TO" textAlignment="CENTER" textFill="#9a226a">
+         <font>
+            <Font name="Arial" size="16.0" />
+         </font>
+      </Label>
    </AnchorPane>
 </HBox>

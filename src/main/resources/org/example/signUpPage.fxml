@@ -7,9 +7,13 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
+<?import java.net.URL?>
 <HBox alignment="CENTER" prefHeight="529.0" prefWidth="718.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.client.SignUpPagecontrol">
    <children>
-      <AnchorPane prefHeight="654.0" prefWidth="774.0" style="-fx-background-color: DarkSeaGreen;">
+      <AnchorPane prefHeight="654.0" prefWidth="774.0" styleClass="bodybg" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+         <stylesheets>
+            <URL value="@style.css" />
+         </stylesheets>
          <children>
             <Label layoutX="122.0" layoutY="90.0" prefHeight="31.0" prefWidth="94.0" text="Sign Up">
                <font>

@@ -1,9 +1,8 @@
 package org.example.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -14,17 +13,36 @@ public class Client extends User implements Serializable {
     private int cvv;
     private String AccountType;
 
+    @OneToMany
+    private List<Item> itemList=new ArrayList<>();
+
     public Client(String id, String username, String password) {
         super(username, password);
         this.ID=id;
+    }
+    public Client(String id, String username, String password,List<Item> itemList) {
+        super(username, password);
+        this.ID=id;
+        this.itemList=itemList;
     }
 
 
     public Client() {
 
     }
-    //__ paymentlist &&  cancellist
 
+    //__ paymentlist &&  cancellist
+    public List<Item> getItemList() {
+        return itemList;
+    }
+
+    public void setItemList(List<Item> itemList) {
+        this.itemList = itemList;
+    }
+    public void AddItem(Item item)
+    {
+        this.itemList.add(item);
+    }
 
     public String getID() {
         return ID;

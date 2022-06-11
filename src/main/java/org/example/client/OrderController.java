@@ -69,17 +69,16 @@ public class OrderController implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        initCol();
+/*        initCol();
         List<Item> myList = (List<Item>) Client.data;
-        loadData(myList);
+        loadData(myList);*/
 
     }
     private void initCol() {
-        try {
+/*        try {
             imageCol.setCellValueFactory(new PropertyValueFactory<>("ImgURL"));
             imageCol.setCellFactory(param -> new ImageTableCell<>());
             imageCol.prefWidthProperty().bind(ProductTable.widthProperty().multiply(.30));
-            ;
 
             productName.setCellValueFactory(new PropertyValueFactory<>("name"));
             productName.prefWidthProperty().bind(ProductTable.widthProperty().multiply(.30));
@@ -92,7 +91,7 @@ public class OrderController implements Initializable{
 
         } catch (Exception ex) {
             ex.printStackTrace();
-        }
+        }*/
     }
     public void loadData(List<Item> myItems) {
         try {
@@ -114,7 +113,11 @@ public class OrderController implements Initializable{
 
     @FXML
     void Order(ActionEvent event) {
-
+        try {
+            App.setRoot("Payment");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     @FXML

@@ -10,9 +10,9 @@ import java.io.Serializable;
 @Table
 public class User implements Serializable {
     @Id
-    @Column(name = "id")
+    @Column(name = "userid")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    protected Long id;
+    protected long Id;
     protected String username;
     protected String password;
 
@@ -22,14 +22,9 @@ public class User implements Serializable {
         this.password=password;
     }
 
-    public Long getId() {
-        return id;
+    public long getId() {
+        return Id;
     }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
 
     public String getUsername() {
         return username;

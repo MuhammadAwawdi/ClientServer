@@ -19,8 +19,13 @@ public class Message implements Serializable {
     public static final int LoggingIn_C=10;
     public static final int SignUp_S=11;
     public static final int SignUp_C=12;
-    public static final int Add2Basket=13;
-    public static final int Add2BasketRes=14;
+    public static final int Add2Basket_S=13;
+    public static final int Add2Basket_C=14;
+    public static final int Complaint_S=15;
+    public static final int Complaint_C=16;
+    public static final int ResComplaint_S=17;
+    public static final int ResComplaint_C=18;
+
 
 
 
@@ -57,12 +62,23 @@ public class Message implements Serializable {
     }
 
     public int getMsg() {
-        return msg;
+        return this.msg;
     }
-
+    //public void setMsg(int msg1){msg=msg1;}
 
     public Object getObject() {
         return object;
     }
+    public void setObject(Object obj) {
+        this.object=obj;
+    }
+    public String getInfo_Msg() {
+        return this.info_Msg;
+
+    }
+    public void setInfo_Msg(String info_Msg) {
+        this.info_Msg = info_Msg;
+    }
+
 
 }

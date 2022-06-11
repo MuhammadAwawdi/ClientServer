@@ -137,7 +137,7 @@ public class Catalogcontrol implements Initializable {
         applyDiscount.setOnAction(e -> {
             double percentage = (Double.parseDouble(discountTF.getText()));
             for(int i=0; i<ProductTable.getItems().size();i++){
-               ProductTable.getItems().get(i).setPrice(percentage*ProductTable.getItems().get(i).getPrice()/100);
+                ProductTable.getItems().get(i).setPrice(percentage*ProductTable.getItems().get(i).getPrice()/100);
                 System.out.println(ProductTable.getItems().get(i).getPrice());
                 itemByPercentage = ProductTable.getItems().get(i);
                 Message percentageMessage = new Message(Message.updateItem,itemByPercentage);
@@ -301,19 +301,30 @@ public class Catalogcontrol implements Initializable {
             newWindow1.close();
         });
     }
-        private void handleRefresh(ActionEvent event) {
-            try {
-                Message msg=new Message(Message.getAllItems);
-                Client.getClient().sendToServer(msg);
-                System.out.println("message sent to server to get all products");
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
+    private void handleRefresh(ActionEvent event) {
+        try {
+            Message msg=new Message(Message.getAllItems);
+            Client.getClient().sendToServer(msg);
+            System.out.println("message sent to server to get all products");
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
+    }
     @FXML
     void AddToPascket(ActionEvent event) {
-        //Client.getClient().
+
+        int index = ProductTable.getSelectionModel().getSelectedIndex();
+        if (index <= -1) {
+            return;
+        }
+        selectedItem = ProductTable.getSelectionModel().getSelectedItem();
+        Message msg = new Message(Message.Add2Basket_S, selectedItem);
+        try {
+            Client.getClient().sendToServer(msg);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 }

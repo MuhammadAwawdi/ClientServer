@@ -15,6 +15,7 @@ public class Item implements Serializable {
     private String ImgURL;
 
     public Item(){}
+
     public Item(String name,double price, String kind,String ImageURL){
         this.name=name;
         this.price=price;
